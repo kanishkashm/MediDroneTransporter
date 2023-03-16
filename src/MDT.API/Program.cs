@@ -1,5 +1,10 @@
+using MDT.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<MdtContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("MdtDb")));
 // Add services to the container.
 
 builder.Services.AddControllers();
