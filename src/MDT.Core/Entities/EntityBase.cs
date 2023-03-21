@@ -1,6 +1,6 @@
 ﻿namespace MDT.Core.Entities
 {
-    public class BaseEntity
+    public class EntityBase
     {
         public int Id { get; set; }
     }

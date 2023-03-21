@@ -1,11 +1,12 @@
+using MDT.Core;
+using MDT.Infrastructure;
 using MDT.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<MdtContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("MdtDb")));
 // Add services to the container.
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+SeedDatabase();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -26,3 +28,17 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+        try
+        {
+            var scopedContext = scope.ServiceProvider.GetRequiredService<MdtContext>();
+            MdtSeedsData.Initialize(scopedContext);
+        }
+        catch
+        {
+            throw;
+        }
+}
