@@ -6,6 +6,8 @@ Tech stack
 	.NET Core Web api
 	EF Core InMemoryDB
 	CQRS Design pattern
+	
+GitHub link - https://github.com/kanishkashm/MediDroneTransporter
 
 Swagger URL - http://localhost:5005/swagger/index.html
 
