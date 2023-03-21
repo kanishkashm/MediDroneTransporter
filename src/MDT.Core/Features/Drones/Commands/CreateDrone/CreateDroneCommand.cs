@@ -1,11 +1,12 @@
-﻿using MDT.Core.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MDT.Core.Entities;
+using MDT.Core.Enums;
+using MediatR;
 
-namespace MDT.Core.Entities
+namespace MDT.Core.Features.Drones.Commands.CreateDrone
 {
-    [Table("Drone")]
-    public class Drone : EntityBase
+    public class CreateDroneCommand : IRequest<Drone>
     {
+        public int Id { get; set; }
         public string SerialNumber { get; set; }
         public ModelEnum Model { get; set; }
         public decimal WeightLimit { get; set; }

@@ -1,15 +1,14 @@
 ﻿using MDT.Core.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MDT.Core.Entities
+namespace MDT.Core.Features.Drones.ViewModel
 {
-    [Table("Drone")]
-    public class Drone : EntityBase
+    public class DroneVm
     {
+        public int Id { get; set; }
         public string SerialNumber { get; set; }
         public ModelEnum Model { get; set; }
         public decimal WeightLimit { get; set; }
-        public int BatteryCapacity { get; set; }
+        public decimal BatteryCapacity { get; set; }
         public StatusEnum State { get; set; }
     }
 }
